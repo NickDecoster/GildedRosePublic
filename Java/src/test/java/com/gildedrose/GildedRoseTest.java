@@ -154,4 +154,40 @@ class GildedRoseTest {
         assertEquals(1, app.items[2].sellIn);
         assertEquals(50, app.items[2].quality);
     }
+
+    @Test
+    void TestConjuredItemQualityDecreasesBy2Daily() {
+        Item[] items = new Item[]{new Item("Conjured placeholder", 5, 3)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(1, app.items[0].quality);
+    }
+    @Test
+    void TestConjuredItemQualityDecreasesTwiceAsFastOnceExpired() {
+        Item[] items = new Item[] { new Item("Conjured placeholder", -3, 7) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals(-4, app.items[0].sellIn);
+        assertEquals(3, app.items[0].quality);
+    }
+
+    @Test
+    void TestConjuredItemQualityNeverNegative() {
+        Item[] items = new Item[] { new Item("Conjured placeholder", 3, 1), new Item("Conjured placeholder", -1, 3) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+
+        assertEquals("Conjured placeholder", app.items[1].name);
+        assertEquals(-2, app.items[1].sellIn);
+        assertEquals(0, app.items[1].quality);
+    }
 }

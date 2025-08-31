@@ -14,6 +14,10 @@ public class AgerFactory {
             return new LegendaryItemAger();
         }
 
+        if (itemName.contains("Conjured")) {
+            return new ConjuredItemAger();
+        }
+
         return new NormalItemAger();
     }
 }
