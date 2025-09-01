@@ -5,44 +5,43 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
-    //TODO replace placeholder with DPG specific items
 
     @Test
     void testSellInAndqualityLowerDaily() {
-        Item[] items = new Item[] { new Item("placeholder", 3, 5) };
+        Item[] items = new Item[] { new Item("HLN article", 3, 5) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("placeholder", app.items[0].name);
+        assertEquals("HLN article", app.items[0].name);
         assertEquals(2, app.items[0].sellIn);
         assertEquals(4, app.items[0].quality);
     }
 
     @Test
     void testItemQualityLowersTwiceAsFastWithNegativeSellIn() {
-        Item[] items = new Item[] { new Item("placeholder", -3, 7) };
+        Item[] items = new Item[] { new Item("JOE Podcast", -3, 7) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("placeholder", app.items[0].name);
+        assertEquals("JOE Podcast", app.items[0].name);
         assertEquals(-4, app.items[0].sellIn);
         assertEquals(5, app.items[0].quality);
     }
 
     @Test
     void testItemQualityNeverNegative() {
-        Item[] items = new Item[] { new Item("placeholder", 3, 0),  new Item("placeholder1", -2, 1) };
+        Item[] items = new Item[] { new Item("Q-Top 40", 3, 0),  new Item("NU.nl weather forecast", -2, 1) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("placeholder", app.items[0].name);
+        assertEquals("Q-Top 40", app.items[0].name);
         assertEquals(2, app.items[0].sellIn);
         assertEquals(0, app.items[0].quality);
 
-        assertEquals("placeholder1", app.items[1].name);
+        assertEquals("NU.nl weather forecast", app.items[1].name);
         assertEquals(-3, app.items[1].sellIn);
         assertEquals(0, app.items[1].quality);
     }
 
     @Test
-    void testAgedBrieQualityIncreasesDaily() {
+    void testAgedItemQualityIncreasesDaily() {
         Item[] items = new Item[] { new Item("Aged Brie", 2, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -52,7 +51,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void testAgedBrieQualityIncreasesTwiceAsFastOnceExpired() {
+    void testAgedItemQualityIncreasesTwiceAsFastOnceExpired() {
         Item[] items = new Item[] { new Item("Aged Brie", 0, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -62,15 +61,15 @@ class GildedRoseTest {
     }
 
     @Test
-    void testQualityOfAgedBrieNeverAbove50() {
-        Item[] items = new Item[] { new Item("Aged Brie", 2, 50),  new Item("Aged Brie", -3, 49) };
+    void testQualityOfAgedItemNeverAbove50() {
+        Item[] items = new Item[] { new Item("Aged Brie", 2, 50),  new Item("Aged Rochefort", -3, 49) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Aged Brie", app.items[0].name);
         assertEquals(1, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
 
-        assertEquals("Aged Brie", app.items[1].name);
+        assertEquals("Aged Rochefort", app.items[1].name);
         assertEquals(-4, app.items[1].sellIn);
         assertEquals(50, app.items[1].quality);
     }
@@ -101,28 +100,28 @@ class GildedRoseTest {
 
     @Test
     void testBackstagePassQualityIncreasesBy2WithSellInLowerThan10 () {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 8), new Item("Backstage passes to a TAFKAL80ETC concert", 6, 5) };
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 8), new Item("Backstage passes to a Sabaton concert", 6, 5) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(9, app.items[0].sellIn);
         assertEquals(10, app.items[0].quality);
 
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals("Backstage passes to a Sabaton concert", app.items[1].name);
         assertEquals(5, app.items[1].sellIn);
         assertEquals(7, app.items[1].quality);
     }
 
     @Test
     void testBackstagePassQualityIncreasesBy3WithSellInLowerThan5 () {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 8), new Item("Backstage passes to a TAFKAL80ETC concert", 1, 5) };
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 8), new Item("Backstage passes to a Poets of the fall concert", 1, 5) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(4, app.items[0].sellIn);
         assertEquals(11, app.items[0].quality);
 
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals("Backstage passes to a Poets of the fall concert", app.items[1].name);
         assertEquals(0, app.items[1].sellIn);
         assertEquals(8, app.items[1].quality);
     }
@@ -139,54 +138,54 @@ class GildedRoseTest {
 
     @Test
     void testBackstagePassQualityNeverAbove50 () {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50), new Item("Backstage passes to a TAFKAL80ETC concert", 7, 49), new Item("Backstage passes to a TAFKAL80ETC concert", 2, 48) };
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50), new Item("Backstage passes to Tomorrowland", 7, 49), new Item("Backstage passes to the Q-music DJ contest", 2, 48) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
         assertEquals(10, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
 
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals("Backstage passes to Tomorrowland", app.items[1].name);
         assertEquals(6, app.items[1].sellIn);
         assertEquals(50, app.items[1].quality);
 
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[2].name);
+        assertEquals("Backstage passes to the Q-music DJ contest", app.items[2].name);
         assertEquals(1, app.items[2].sellIn);
         assertEquals(50, app.items[2].quality);
     }
 
     @Test
     void TestConjuredItemQualityDecreasesBy2Daily() {
-        Item[] items = new Item[]{new Item("Conjured placeholder", 5, 3)};
+        Item[] items = new Item[] { new Item("Conjured Humo article", 5, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
-        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals("Conjured Humo article", app.items[0].name);
         assertEquals(4, app.items[0].sellIn);
         assertEquals(1, app.items[0].quality);
     }
     @Test
     void TestConjuredItemQualityDecreasesTwiceAsFastOnceExpired() {
-        Item[] items = new Item[] { new Item("Conjured placeholder", -3, 7) };
+        Item[] items = new Item[] { new Item("Conjured muffin", -3, 7) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
-        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals("Conjured muffin", app.items[0].name);
         assertEquals(-4, app.items[0].sellIn);
         assertEquals(3, app.items[0].quality);
     }
 
     @Test
     void TestConjuredItemQualityNeverNegative() {
-        Item[] items = new Item[] { new Item("Conjured placeholder", 3, 1), new Item("Conjured placeholder", -1, 3) };
+        Item[] items = new Item[] { new Item("Conjured mana cake", 3, 1), new Item("Conjured silver spoon", -1, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
-        assertEquals("Conjured placeholder", app.items[0].name);
+        assertEquals("Conjured mana cake", app.items[0].name);
         assertEquals(2, app.items[0].sellIn);
         assertEquals(0, app.items[0].quality);
 
-        assertEquals("Conjured placeholder", app.items[1].name);
+        assertEquals("Conjured silver spoon", app.items[1].name);
         assertEquals(-2, app.items[1].sellIn);
         assertEquals(0, app.items[1].quality);
     }
