@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.ager;
+
+import com.gildedrose.Item;
 
 public class NormalItemAger implements AgerStrategy {
     @Override

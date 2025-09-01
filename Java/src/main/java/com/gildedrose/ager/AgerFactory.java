@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.ager;
 
 public class AgerFactory {
     public static AgerStrategy createAgerForItem(String itemName) {

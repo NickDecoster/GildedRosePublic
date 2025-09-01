@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.ager.AgerFactory;
+
 class GildedRose {
     Item[] items;
 
@@ -13,6 +15,5 @@ class GildedRose {
         }
     }
 
-    //TODO: look into Value object pattern.
     //TODO: add adapter for fetching legendary items.
 }
