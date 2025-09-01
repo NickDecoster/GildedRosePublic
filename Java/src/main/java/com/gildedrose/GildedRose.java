@@ -14,6 +14,4 @@ class GildedRose {
             AgerFactory.createAgerForItem(item.name).ageItem(item);
         }
     }
-
-    //TODO: add adapter for fetching legendary items.
 }
