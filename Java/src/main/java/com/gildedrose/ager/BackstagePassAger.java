@@ -5,20 +5,18 @@ import com.gildedrose.Item;
 public class BackstagePassAger implements AgerStrategy {
     @Override
     public void ageItem(Item item) {
-        item.sellIn--;
-        if (item.sellIn < 0) {
-            item.quality = 0;
-            return;
+        item.sellIn.decreaseSellIn();
+        if (item.sellIn.hasExpired()) {
+            item.quality.setQualityToZero();
         }
-
-        if (item.quality < 50) {
-            item.quality++;
+        else if (item.sellIn.getSellIn() < 5) {
+            item.quality.increaseQuality(3);
         }
-        if (item.quality < 50 && item.sellIn < 10) {
-            item.quality++;
+        else if (item.sellIn.getSellIn() < 10) {
+            item.quality.increaseQuality(2);
         }
-        if (item.quality < 50 && item.sellIn < 5) {
-            item.quality++;
+        else {
+            item.quality.increaseQuality(1);
         }
     }
 }

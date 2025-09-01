@@ -4,14 +4,14 @@ public class Item {
 
     public String name;
 
-    public int sellIn;
+    public SellIn sellIn;
 
-    public int quality;
+    public Quality quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
+        this.sellIn = new SellIn(sellIn);
+        this.quality = new Quality(quality);
     }
 
     @Override

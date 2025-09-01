@@ -5,18 +5,11 @@ import com.gildedrose.Item;
 public class ConjuredItemAger implements AgerStrategy {
     @Override
     public void ageItem(Item item) {
-        item.sellIn--;
-        if (item.quality > 0) {
-            item.quality--;
-            if (item.quality > 0) {
-                item.quality--;
-            }
-        }
-        if (item.quality > 0 && item.sellIn < 0) {
-            item.quality--;
-            if (item.quality > 0) {
-                item.quality--;
-            }
+        item.sellIn.decreaseSellIn();
+        if (item.sellIn.hasExpired()) {
+            item.quality.decreaseQuality(4);
+        } else {
+            item.quality.decreaseQuality(2);
         }
     }
 }
